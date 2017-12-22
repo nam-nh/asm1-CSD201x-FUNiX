@@ -147,9 +147,9 @@ public class MainClass {
 				try {
 					@SuppressWarnings("resource")
 					Scanner scanner = new Scanner(file);
+					
+					//linear search (line by line)
 					while(scanner.hasNextLine()){
-						
-						//check line by line
 						String line = scanner.nextLine();
 						if(line.contains(input)){
 							System.out.println(files.get(i).getName());
