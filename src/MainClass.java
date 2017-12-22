@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class MainClass {
 	public static ArrayList<MyFile> myFiles = new ArrayList<MyFile>();
-	
+	public static String tab = "\t";
 	public static void main(String[] args) {
 		String path;
 		
@@ -17,11 +17,13 @@ public class MainClass {
 		
 		// get the path
 		path = sc.nextLine();
-		getFiles(path);
+		getFiles(path, tab);
 		
 		try {
 			while (true) {
-				System.out.println("\n1. Sort file\n2. Find the files that a string appears in\n3. Exit");
+				System.out.println("\n1. Sort text files)\n"
+						+ "2. Find text files that a string appears in\n"
+						+ "3. Exit");
 				// get the result of user
 				int result = sc.nextInt();
 				if(result == 1){
@@ -64,17 +66,17 @@ public class MainClass {
 		
 	}
 	
-	public static void getFiles(String path){
+	public static void getFiles(String path, String tab){
 		File dir = new File(path);
         File[] listFile = dir.listFiles();
         for (int i = 0; i < listFile.length; i++) {
             if (listFile[i].isDirectory()) {
-                
+            	System.out.println(tab + listFile[i].getName());
             	// recusion if the file is a folder
-                getFiles(listFile[i].getPath());
+                getFiles(listFile[i].getPath(), tab + "\t");
                 
             } else if (listFile[i].isFile()) {
-                System.out.println(listFile[i].getName());
+                System.out.println(tab + listFile[i].getName());
                 
                 //stored files in array list
                 myFiles.add(new MyFile(listFile[i].getName(), listFile[i].length(), listFile[i].getPath()));
